@@ -1,0 +1,128 @@
+
+<div class="col-md-10 mt-4 container">
+    <div class="card card-user">
+    <div class="card-header">
+        <h5 class="card-title">OBTENER CÓDIGO CUFD</h5>
+    </div>
+    <div class="card-body">
+        <form id="formcodes">
+        <div class="row">
+            <div class="col-md-6 pr-5">
+            <div class="form-group">
+                <label>Ambiente</label>
+                <select name='ambiente' class="form-select">
+                    <option value="1">1. Producción</option>
+                    <option selected value="2">2. Pruebas y Piloto</option>
+                </select>
+            </div>
+            </div>
+            <div class="col-md-6 pl-5">
+            <div class="form-group">
+                <label>Modalidad</label>
+                <select name='modalidad' class="form-select">
+                    <option value="1">1. Electrónica en línea</option>
+                    <option selected value="2">2. Computarizada en línea</option>
+                </select>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 pr-5">
+            <div class="form-group">
+                <label>Código Sistema</label>
+                <input type="text" name='codsistema' class="form-control" value="71F2C7048ED54B99A4AE42F">
+            </div>
+            </div>
+            <div class="col-md-6 pl-5">
+            <div class="form-group">
+                <label>NIT</label>
+                <input type="text" name='nit' class="form-control" value="190590027">
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 pr-4">
+            <div class="form-group">
+                <label>Sucursal</label>
+                <select name='sucursal' class="form-select">
+                    <option value="0">Casa Matriz</option>
+                    <option value="1">Sucursal [1]</option>
+                    <option value="2">Sucursal [2]</option>
+                    <option value="3">Sucursal [3]</option>
+                </select>
+            </div>
+            </div>
+            <div class="col-md-4 pl-4">
+            <div class="form-group">
+                <label>Punto de Venta</label>
+                <select name='pventa' class="form-select">
+                    <option value="0">Punto de venta [0]</option>
+                    <option value="1">Punto de venta [1]</option>
+                    <option value="2">Punto de venta [2]</option>
+                    <option value="3">Punto de venta [3]</option>
+                </select>
+            </div>
+            </div>
+            <div class="col-md-4 pl-4">
+                <div class="form-group">
+                    <label>Código CUIS</label>
+                    <select name='cuis' class="form-select">
+                        <option value="145110CC">145110CC</option>
+                        <option value="FF947EED">FF947EED</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+            <div class="form-group">
+                <label>Token</label>
+                <textarea name='token' class="form-control textarea">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGdvcml0bW9zIiwiY29kaWdvU2lzdGVtYSI6IjcxRjJDNzA0OEVENTRCOTlBNEFFNDJGIiwibml0IjoiSDRzSUFBQUFBQUFBQURPME5EQzFOREF3TWdjQW5ZMnBsQWtBQUFBPSIsImlkIjoxMTI4MzcsImV4cCI6MTY4MDgyNTYwMCwiaWF0IjoxNjQ5NDUwMzk1LCJuaXREZWxlZ2FkbyI6MTkwNTkwMDI3LCJzdWJzaXN0ZW1hIjoiU0ZFIn0.4iS_yuqltwVDc-mHZ128d46f31F82gDzPUwd4DtFz0OTleTKleF_5ErBrhgTEStOiHaaCX2F5dlcLYoQBOkemA</textarea>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 pr-1">
+            <div class="form-group">
+                <label>Código Control</label>
+                <input readonly type="text" id="ccontrol" class="form-control">
+            </div>
+            </div>
+            <div class="col-md-4 px-1">
+            <div class="form-group">
+                <label>Vigencia en UTC</label>
+                <input readonly type="text" id="utc" class="form-control">
+            </div>
+            </div>
+            <div class="col-md-4 pl-1">
+            <div class="form-group">
+                <label>Vigencia en AMD</label>
+                <input readonly type="date" id="amd" class="form-control">
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 pr-1">
+            <div class="form-group">
+                <label>Código CUFD</label>
+                <input readonly type="text" id="cufd" class="form-control">
+            </div>
+            </div>
+            <div class="col-md-7 pl-1">
+            <div class="form-group">
+                <label>Dirección</label>
+                <input readonly type="text" id="direccion" class="form-control">
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="ml-auto mr-auto">
+            <button type="submit" id="btncufd" class="btn btn-primary btn-round btn-cufd">Solicitar</button>
+            </div>
+        </div>
+        </form>
+    </div>
+    </div>
+</div>
+
+<script src="/js/data_response.js"></script>

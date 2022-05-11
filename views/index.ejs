@@ -53,11 +53,96 @@
     </style>
   </head>
   <body>
-    <form action="/results" method="GET">
+    <!-- <form action="/results" method="GET">
       <input id="input" placeholder="Type Fahrenheit here" name='convert'></input><br>
       <button id="button" type="submit">Get Temp</button>
     </form>
 
-    <p id="Temp">Coverting...</p>
+    <p id="Temp">Coverting...</p> -->
+    <form id="formcodes">
+    <h2>Datos para la generacion de CUIS</h2>
+    <div id="content">
+      <div>
+         <div style="width: 50%; float:left" id="object1">Ambiente:
+           <select name='ambiente' class="input-text">
+             <option value="1">1. Producción</option>
+             <option selected value="2">2. Pruebas y Piloto</option>
+           </select>
+         </div>
+         <div style="width: 50%; float:left" id="object2">Modalidad:
+           <select name='modalidad' class="input-text">
+             <option value="1">1. Electrónica en línea</option>
+             <option selected value="2">2. Computarizada en línea</option>
+           </select>
+         </div>
+      </div>
+      <div>
+        <div style="width: 50%; float:left">Sucursal:
+          <select name='sucursal' class="input-text">
+            <option value="0">Casa Matriz</option>
+            <option value="1">Sucursal [1]</option>
+            <option value="2">Sucursal [2]</option>
+            <option value="3">Sucursal [3]</option>
+          </select>
+        </div>
+        <div style="width: 50%; float:left">Pro Vta:
+          <select name='pventa' class="input-text">
+            <option value="0">Punto de venta [0]</option>
+            <option value="1">Punto de venta [1]</option>
+            <option value="2">Punto de venta [2]</option>
+            <option value="3">Punto de venta [3]</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <div style="width: 33%; float:left">Sistema:
+          <select name='sistema' class="input-text">
+            <option>Monalisa</option>
+          </select>
+        </div>
+        <div style="width: 33%; float: left">NIT:
+          <input readonly type="text" name='nit' value="190590027">
+        </div>
+        <div style="width: 34%; float:left">Cod Sistema:
+          <input readonly style="width: 200px" type="text" name='codsistema' value="71F2C7048ED54B99A4AE42F">
+        </div>
+      </div>
+      <div> Token
+          <textarea name='token' style="height: 80px; width: 700px;">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGdvcml0bW9zIiwiY29kaWdvU2lzdGVtYSI6IjcxRjJDNzA0OEVENTRCOTlBNEFFNDJGIiwibml0IjoiSDRzSUFBQUFBQUFBQURPME5EQzFOREF3TWdjQW5ZMnBsQWtBQUFBPSIsImlkIjoxMTI4MzcsImV4cCI6MTY4MDgyNTYwMCwiaWF0IjoxNjQ5NDUwMzk1LCJuaXREZWxlZ2FkbyI6MTkwNTkwMDI3LCJzdWJzaXN0ZW1hIjoiU0ZFIn0.4iS_yuqltwVDc-mHZ128d46f31F82gDzPUwd4DtFz0OTleTKleF_5ErBrhgTEStOiHaaCX2F5dlcLYoQBOkemA</textarea>
+      </div>
+      <div>
+         <div style="width: 25%; float: left">Código CUIS:
+           <input type="text" id="cuis" name="cuis">
+         </div>
+         <div style="width: 25%; float: left">Código CUFD:
+          <input type="text" id="cufd">
+         </div>
+         <div style="width: 25%; float: left">Código Control CUFD:
+          <input type="text" id="ccontrol">
+         </div>
+         <div style="width: 25%; float: left">Dirección:
+          <input type="text" id="direccion">
+         </div>
+      </div>
+    </div>
+    <br>
+    <div>
+      <h2>CUIS datos generados</h2>
+      <div style="width: 33%; float: left">Vigencia en [ UTC ]:
+        <input type="text" id="utc" style="width: 200px">
+      </div>
+      <div style="width: 33%; float: left">Vigencia en [ AMD ]:
+        <input type="date" id="amd">
+      </div>
+      <div style="width: 34%; float: left">Válido:
+      <input type="text" id="trans">
+      </div>
+    </div>
+
+    <button id="btncuis" class="btn-cuis">CUIS</button>
+    <button id="btncufd" class="btn-cufd">CUFD</button>
+  </form>
+  
+  <script src="/js/data_response.js"></script>
   </body>
 </html>

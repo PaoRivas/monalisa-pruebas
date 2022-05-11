@@ -1,0 +1,87 @@
+<div class="container-fluid px-4">
+  <form id="formcodes" class="mt-4 container">
+    <div class="row">
+        <div class="col">
+            <label class="form-label">Ambiente</label>
+            <select name='ambiente' class="input-text">
+                <option value="1">1. Producción</option>
+                <option selected value="2">2. Pruebas y Piloto</option>
+            </select>
+        </div>
+        <div class="col">
+            <label class="form-label">Modalidad</label>
+            <select name='modalidad' class="input-text">
+                <option value="1">1. Electrónica en línea</option>
+                <option selected value="2">2. Computarizada en línea</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label class="form-label">Sucursal</label>
+            <select name='sucursal' class="input-text">
+                <option value="0">Casa Matriz</option>
+                <option value="1">Sucursal [1]</option>
+                <option value="2">Sucursal [2]</option>
+                <option value="3">Sucursal [3]</option>
+            </select>
+        </div>
+        <div class="col">
+            <label class="form-label">Tipo Punto de Venta</label>
+            <select name='tipo' class="input-text">
+                <option value="1">Tipo [1]</option>
+                <option value="2">Tipo [2]</option>
+                <option value="3">Tipo [3]</option>
+                <option value="4">Tipo [4]</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label class="form-label">Cuis</label>
+            <input type="text" name='cuis'>
+        </div>
+        <div class="col">
+            <label class="form-label">Nombre</label>
+            <input type="text" name='nombrepventa'>
+        </div>
+        <div class="col">
+            <label class="form-label">Descripción</label>
+            <input type="text" name='descripcion'>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label class="form-label">Sistema</label>
+            <select name='sistema' class="input-text">
+                <option>Monalisa</option>
+            </select>
+        </div>
+        <div class="col">
+            <label class="form-label">NIT</label>
+            <input readonly type="text" name='nit' value="190590027">
+        </div>
+        <div class="col">
+            <label class="form-label">Código Sistema</label>
+            <input readonly style="width: 200px" type="text" name='codsistema' value="71F2C7048ED54B99A4AE42F">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label class="form-label">Token</label>
+            <textarea name='token' style="height: 80px; width: 700px;">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGdvcml0bW9zIiwiY29kaWdvU2lzdGVtYSI6IjcxRjJDNzA0OEVENTRCOTlBNEFFNDJGIiwibml0IjoiSDRzSUFBQUFBQUFBQURPME5EQzFOREF3TWdjQW5ZMnBsQWtBQUFBPSIsImlkIjoxMTI4MzcsImV4cCI6MTY4MDgyNTYwMCwiaWF0IjoxNjQ5NDUwMzk1LCJuaXREZWxlZ2FkbyI6MTkwNTkwMDI3LCJzdWJzaXN0ZW1hIjoiU0ZFIn0.4iS_yuqltwVDc-mHZ128d46f31F82gDzPUwd4DtFz0OTleTKleF_5ErBrhgTEStOiHaaCX2F5dlcLYoQBOkemA</textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label class="form-label">Código Punto Venta</label>
+            <input readonly type="text" id='codigo' name='codigo'>
+        </div>
+        <div class="col">
+            <label class="form-label">Transacción</label>
+            <input readonly type="text" id='trans' name='trans'>
+        </div>
+    </div>
+    <button id="btnpventa" class="btn-pventa">Crear PVenta</button>
+  </form>
+</div>
