@@ -46,6 +46,7 @@ const getcuis = (datos) => {
       mensaje = xmlDoc.getElementsByTagName("descripcion")[0].childNodes[0].nodeValue;
       trans = xmlDoc.getElementsByTagName("transaccion")[0].childNodes[0].nodeValue;
       xmlResult = {codigo, utc, amd, cod_mensaje, mensaje, trans};
+      console.log(xmlResult)
       resolve(xmlResult);
     });
   });

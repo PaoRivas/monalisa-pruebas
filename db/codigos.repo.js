@@ -45,23 +45,30 @@ class CodigosRepo {
         request.input('ccontrol',  mssql.VarChar(50), ccontrol);
         request.input('direccion',  mssql.VarChar(200), direccion);
         request.input('vigencia', mssql.DateTime, utc);
-        //request.input('cod_mensaje',  mssql.Int, cod_mensaje);
-        //request.input('mensaje',  mssql.VarChar(100), mensaje);
         request.input('trans',  mssql.VarChar(10), trans);
         await request.query(
-          `INSERT INTO [dbo].[cufd]
-          ([ambiente]
-          ,[modalidad]
-          ,[sucursal]
-          ,[pventa]
-          ,[cuis]
-          ,[codigo]
-          ,[codigo_control], [direccion]
-          ,[vigencia]
-          ,[trans])
-    VALUES
+          `INSERT INTO [dbo].[cufd] ([ambiente],[modalidad],[sucursal],[pventa],[cuis],[codigo],[codigo_control],[direccion],[vigencia],[trans])
+          VALUES
           (@ambiente, @modalidad, @sucursal, @pventa, @cuis, @codigo, @ccontrol, @direccion, @vigencia, @trans)`
         )
+    }
+    catch (error) {
+      console.log(error);
+      throw(error);
+    }
+  }
+
+  static async getLastCufd(pventa) {
+    try {
+        const pool = await getConnection();
+        const request = await pool.request();
+        request.input('pventa',  mssql.Int, pventa);
+        const response = await request.query(`SELECT TOP 1 codigo, codigo_control FROM cufd WHERE vigencia > GETDATE() AND pventa = @pventa`);
+        var lastcufd = response.recordset[0];
+        if (!lastcufd){
+          lastcufd = {codigo: 'No existe CUFD vigente'};
+        }
+        return lastcufd;
     }
     catch (error) {
       console.log(error);

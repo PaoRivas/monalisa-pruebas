@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <facturaComputarizadaCompraVenta xsi:noNamespaceSchemaLocation="facturaComputarizadaCompraVenta.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <cabecera>
+                <nitEmisor>190590027</nitEmisor>
+                <razonSocialEmisor>Algoritmos S.R.L.</razonSocialEmisor>
+                <municipio>Cochabamba</municipio>
+                <telefono>4533535</telefono>
+                <numeroFactura>1</numeroFactura>
+                <cuf>D0A6B3D62D08696A901448F7824F98094B18606A707B240679276D74</cuf>
+                <cufd>BQcKhQ3xGVEFBNzEI5OUE0QUU0MkY=Q3kyb0hBTUZXVUFFGMkM3MDQ4RUQ1N</cufd>
+                <codigoSucursal>0</codigoSucursal>
+                <direccion>AV. Oquendo 654</direccion>
+                <codigoPuntoVenta xsi:nil="true"/>
+                <fechaEmision>2022-05-11T15:08:47.092</fechaEmision>
+                <nombreRazonSocial>Mi razon social</nombreRazonSocial>
+                <codigoTipoDocumentoIdentidad>1</codigoTipoDocumentoIdentidad>
+                <numeroDocumento>5115889</numeroDocumento>
+                <complemento xsi:nil="true"/>
+                <codigoCliente>51158891</codigoCliente>
+                <codigoMetodoPago>1</codigoMetodoPago>
+                <numeroTarjeta xsi:nil="true"/>
+                <montoTotal>100000</montoTotal>
+                <montoTotalSujetoIva>100000</montoTotalSujetoIva>
+                <codigoMoneda>1</codigoMoneda>
+                <tipoCambio>1</tipoCambio>
+                <montoTotalMoneda>100000</montoTotalMoneda>
+                <montoGiftCard xsi:nil="true"/>
+                <descuentoAdicional>0</descuentoAdicional>
+                <codigoExcepcion xsi:nil="true"/>
+                <cafc xsi:nil="true"/>
+                <leyenda>Ley N° 453: Tienes derecho a recibir información sobre las características y contenidos de los
+                    servicios que utilices.
+                </leyenda>
+                <usuario>pperez</usuario>
+                <codigoDocumentoSector>1</codigoDocumentoSector>
+            </cabecera>
+            <detalle>
+                <actividadEconomica>620200</actividadEconomica>
+                <codigoProductoSin>83143</codigoProductoSin>
+                <codigoProducto>JN-131231</codigoProducto>
+                <descripcion>Judis Novus</descripcion>
+                <cantidad>1</cantidad>
+                <unidadMedida>58</unidadMedida>
+                <precioUnitario>100000</precioUnitario>
+                <montoDescuento>0</montoDescuento>
+                <subTotal>100000</subTotal>
+                <numeroSerie>124548</numeroSerie>
+                <numeroImei>545454</numeroImei>
+            </detalle>
+        </facturaComputarizadaCompraVenta>

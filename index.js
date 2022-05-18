@@ -10,6 +10,7 @@ const OperacionesRepo = require('./db/operaciones.repo');
 const syncApi = require('./api/sincronizacion_api');
 const SyncRepo = require('./db/sincronizacion.repo');
 const recepcionApi = require('./api/recepcion_api');
+const RecepcionRepo = require('./db/recepcion.repo');
 const { getFunctions } = require('./clientsoap');
 
 //create a server object:
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
 app.use(expressLayouts);
+
 app.get("/", function(req, res) {
   res.redirect("/cuis");
 });
@@ -30,13 +32,6 @@ app.get("/cuis", function(req, res) {
 });
 
 app.post('/cuis', function(req, res) {
-  // try{
-  //   const xmlResult = await api.query(req.query);
-  //   await CuisRepo.postCuis(req.query, xmlResult);
-  //   res.render('index', {data: xmlResult});
-  // }catch{
-  //   res.status(500).send(ex);
-  // }
   codigosApi.getcuis(req.body)
     .then(xmlResult => {
       CodigosRepo.addCuis(req.body, xmlResult);
@@ -49,17 +44,6 @@ app.get("/cufd", function(req, res) {
 });
 
 app.post('/cufd', async function(req, res) {
-
-//   for (var i = 0, p = Promise.resolve(); i < 100; i++) {
-
-//     p = p.then(() => codigosApi.getcufd(req.body))
-//     .then(xmlResult => {
-//       console.log(i)
-//       CodigosRepo.addCufd(req.body, xmlResult);
-//     })
-//     //res.json({data: xmlResult})
-//     console.log(i+"hh")
-//  }
   //for (var i = 0; i < 100; i++) {
     const xmlResult = await codigosApi.getcufd(req.body);
     await CodigosRepo.addCufd(req.body, xmlResult);
@@ -77,7 +61,6 @@ app.post('/crearpventa', function(req, res) {
   .then(xmlResult => {
     OperacionesRepo.addPventa(req.body, xmlResult);
     res.json({data: xmlResult})
-    //res.render("pventa");
   })
 });
 
@@ -96,12 +79,15 @@ app.post('/sincronizacion', async function(req, res) {
 });
 
 app.get("/recepcionfactura", async function(req, res) {
-  res.render("recepcionfactura");
+  const lastcufd = await CodigosRepo.getLastCufd(1);
+  res.render("recepcionfactura", {lastcufd});
 });
 
 app.post('/recepcionfactura', async function(req, res) {
-
-  await recepcionApi.sendFacturas();
+  for (var i = 0; i < 125; i++) {
+    const xmlResult = await recepcionApi.sendFacturas(req.body);
+    await RecepcionRepo.addFactura(req.body, xmlResult)
+  }
   res.redirect("/recepcionfactura");
 
 });
