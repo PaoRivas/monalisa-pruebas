@@ -10,7 +10,7 @@
             <div class="col-md-6 pr-5">
             <div class="form-group">
                 <label>Ambiente</label>
-                <select name='ambiente' class="form-select">
+                <select name='codigoAmbiente' class="form-select">
                     <option value="1">1. Producción</option>
                     <option selected value="2">2. Pruebas y Piloto</option>
                 </select>
@@ -19,7 +19,7 @@
             <div class="col-md-6 pl-5">
             <div class="form-group">
                 <label>Modalidad</label>
-                <select name='modalidad' class="form-select">
+                <select name='codigoModalidad' class="form-select">
                     <option value="1">1. Electrónica en línea</option>
                     <option selected value="2">2. Computarizada en línea</option>
                 </select>
@@ -30,7 +30,7 @@
             <div class="col-md-6 pr-5">
             <div class="form-group">
                 <label>Código Sistema</label>
-                <input type="text" name='codsistema' class="form-control" value="71F2C7048ED54B99A4AE42F">
+                <input type="text" name='codigoSistema' class="form-control" value="71F2C7048ED54B99A4AE42F">
             </div>
             </div>
             <div class="col-md-6 pl-5">
@@ -44,7 +44,7 @@
             <div class="col-md-6 pr-5">
             <div class="form-group">
                 <label>Sucursal</label>
-                <select name='sucursal' class="form-select">
+                <select name='codigoSucursal' class="form-select">
                     <option value="0">Casa Matriz</option>
                     <option value="1">Sucursal [1]</option>
                     <option value="2">Sucursal [2]</option>
@@ -55,7 +55,7 @@
             <div class="col-md-6 pl-5">
             <div class="form-group">
                 <label>Punto de Venta</label>
-                <select name='pventa' class="form-select">
+                <select name='codigoPuntoVenta' class="form-select">
                     <option value="0">Punto de venta [0]</option>
                     <option value="1">Punto de venta [1]</option>
                     <option value="2">Punto de venta [2]</option>
@@ -76,19 +76,19 @@
             <div class="col-md-4 pr-1">
             <div class="form-group">
                 <label>Código CUIS</label>
-                <input readonly type="text" id="cuis" name="cuis" class="form-control">
+                <input readonly type="text" id="cuis" class="form-control">
             </div>
             </div>
             <div class="col-md-4 px-1">
             <div class="form-group">
                 <label>Vigencia en UTC</label>
-                <input readonly type="text" id="utc" class="form-control">
+                <input readonly type="datetime" id="utc" class="form-control">
             </div>
             </div>
             <div class="col-md-4 pl-1">
             <div class="form-group">
                 <label>Vigencia en AMD</label>
-                <input readonly type="date" id="amd" class="form-control">
+                <input readonly type="datetime" id="amd" class="form-control">
             </div>
             </div>
         </div>

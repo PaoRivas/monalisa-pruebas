@@ -1,5 +1,5 @@
 const soap = require('soap');
-const syncurl = 'https://pilotosiatservicios.impuestos.gob.bo/v2/FacturacionSincronizacion?wsdl';
+const sync_url = 'https://pilotosiatservicios.impuestos.gob.bo/v2/FacturacionSincronizacion?wsdl';
 
 const getClient = async (url) => {
     try {
@@ -12,12 +12,12 @@ const getClient = async (url) => {
 
 const getFunctions = async () => {
     try {
-        const client = await getClient(syncurl);
+        const client = await getClient(sync_url);
         const describe = client.describe();
         const port = describe.ServicioFacturacionSincronizacion.ServicioFacturacionSincronizacionPort;
         const functions = Object.keys(port);
-        functions.splice(10,1);
-        return functions;
+        const sync_functions = functions.filter(x => x.includes('sincronizar'));
+        return sync_functions.sort();
     } catch (error) {
         console.error(error);
     }

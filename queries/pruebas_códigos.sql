@@ -353,3 +353,75 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
+
+CREATE TABLE [dbo].[eventos_significativos](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[ambiente] [int] NOT NULL,
+	[motivo_evento] [int] NOT NULL,
+	[sucursal] [int] NOT NULL,
+	[pventa] [int] NOT NULL,
+	[cufd] [nvarchar](100) NOT NULL,
+	[cufd_evento] [nvarchar](100) NOT NULL,
+	[cuis] [nvarchar](10) NOT NULL,
+	[fecha_inicio] [datetime] NOT NULL,
+	[fecha_fin] [datetime] NOT NULL,
+	[descripcion] [nvarchar](100) NULL,
+	[codigo_recepcion] [int] NOT NULL,
+	[trans] [varchar](10) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[recepcion_paquete](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[ambiente] [int] NOT NULL,
+	[modalidad] [int] NOT NULL,
+	[sucursal] [int] NOT NULL,
+	[pventa] [int] NOT NULL,
+	[cufd] [nvarchar](100) NOT NULL,
+	[cuis] [nvarchar](10) NOT NULL,
+	[documento_sector] [int] NOT NULL,
+	[emision] [int] NOT NULL,
+	[tipo_factura] [int] NOT NULL,
+	[fecha_envio] [datetime] NOT NULL,
+	[archivo] [nvarchar](max) NOT NULL,
+	[hash] [nvarchar](100) NOT NULL,
+	[cafc] [nvarchar](20) NOT NULL,
+	[cantidad] [int] NOT NULL,
+	[codigo_evento] [bigint] NOT NULL,
+	[descripcion] [nvarchar](20) NOT NULL,
+	[codigo_estado] [int] NOT NULL,
+	[codigo_recepcion] [nvarchar](50) NOT NULL,
+	[trans] [bit] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[anulacion](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[ambiente] [int] NOT NULL,
+	[modalidad] [int] NOT NULL,
+	[sucursal] [int] NOT NULL,
+	[pventa] [int] NOT NULL,
+	[cufd] [nvarchar](100) NOT NULL,
+	[cuis] [nvarchar](10) NOT NULL,
+	[documento_sector] [int] NOT NULL,
+	[emision] [int] NOT NULL,
+	[tipo_factura] [int] NOT NULL,
+	[codigo_motivo] [int] NOT NULL,
+	[cuf] [nvarchar](100) NOT NULL,
+	[descripcion] [nvarchar](40) NOT NULL,
+	[codigo_estado] [int] NOT NULL,
+	[trans] [bit] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO

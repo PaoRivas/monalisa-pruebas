@@ -1,5 +1,3 @@
-// var request = require("request");
-// var DOMParser = require("xmldom").DOMParser;
 const { getClient } = require('../clientsoap');
 const url = 'https://pilotosiatservicios.impuestos.gob.bo/v2/FacturacionSincronizacion?wsdl';
 
@@ -10,7 +8,8 @@ const getsync = async (data) => {
   client.addHttpHeader('ApiKey', `TokenApi ${token}`);
   const response = await client[funcion + 'Async'](args);
   const firstkey = Object.values(response[0])[0];
-  const result = Object.values(firstkey)[1]
+  const result = Object.values(firstkey)[1];
+  //console.log(result)
   return result;
 };
 

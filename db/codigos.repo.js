@@ -1,28 +1,29 @@
 const { getConnection, mssql } = require('../database');
+const helpers = require('../lib/helpers');
 
 class CodigosRepo {
 
   static async addCuis(form, xmlresponse) {
     try {
-        const {ambiente, modalidad, sucursal, pventa} = form;
-        const {codigo, utc, cod_mensaje, mensaje, trans} = xmlresponse;
+        const {codigoAmbiente, codigoModalidad, codigoSucursal, codigoPuntoVenta} = form;
+        const {codigo, fechaVigencia, transaccion} = xmlresponse;
         const pool = await getConnection();
         const request = await pool.request();
-        request.input('ambiente',  mssql.Int, ambiente);
-        request.input('modalidad',  mssql.Int, modalidad);
-        request.input('sucursal',  mssql.Int, sucursal);
-        request.input('pventa',  mssql.Int, pventa);
+        request.input('ambiente',  mssql.Int, codigoAmbiente);
+        request.input('modalidad',  mssql.Int, codigoModalidad);
+        request.input('sucursal',  mssql.Int, codigoSucursal);
+        request.input('pventa',  mssql.Int, codigoPuntoVenta);
         request.input('codigo',  mssql.VarChar(10), codigo);
-        request.input('vigencia', mssql.DateTime, utc);
-        request.input('cod_mensaje',  mssql.Int, cod_mensaje);
-        request.input('mensaje',  mssql.VarChar(100), mensaje);
-        request.input('trans',  mssql.VarChar(10), trans);
+        request.input('vigencia', mssql.DateTime, fechaVigencia);
+        request.input('cod_mensaje',  mssql.Int, 980);
+        request.input('mensaje',  mssql.VarChar(100), 'EXISTE UN CUIS VIGENTE PARA LA SUCURSAL O PUNTO DE VENTA');
+        request.input('trans',  mssql.Bit, transaccion);
         await request.query(
           `INSERT INTO [dbo].[cuis]
           ([ambiente],[modalidad],[sucursal],[pventa],[codigo],[vigencia],[cod_mensaje],[mensaje],[trans])
             VALUES
           (@ambiente, @modalidad, @sucursal, @pventa, @codigo, @vigencia, @cod_mensaje, @mensaje, @trans)`
-        )
+        );
     }
     catch (error) {
       console.log(error);
@@ -32,25 +33,25 @@ class CodigosRepo {
 
   static async addCufd(form, xmlresponse) {
     try {
-        const {ambiente, modalidad, sucursal, pventa, cuis} = form;
-        const {codigo, ccontrol, direccion, utc, trans} = xmlresponse;
+        const {codigoAmbiente, codigoModalidad, codigoSucursal, codigoPuntoVenta, cuis} = form;
+        const {codigo, codigoControl, direccion, fechaVigencia, transaccion} = xmlresponse;
         const pool = await getConnection();
         const request = await pool.request();
-        request.input('ambiente',  mssql.Int, ambiente);
-        request.input('modalidad',  mssql.Int, modalidad);
-        request.input('sucursal',  mssql.Int, sucursal);
-        request.input('pventa',  mssql.Int, pventa);
+        request.input('ambiente',  mssql.Int, codigoAmbiente);
+        request.input('modalidad',  mssql.Int, codigoModalidad);
+        request.input('sucursal',  mssql.Int, codigoSucursal);
+        request.input('pventa',  mssql.Int, codigoPuntoVenta);
         request.input('cuis',  mssql.VarChar(10), cuis);
         request.input('codigo',  mssql.VarChar(100), codigo);
-        request.input('ccontrol',  mssql.VarChar(50), ccontrol);
+        request.input('ccontrol',  mssql.VarChar(50), codigoControl);
         request.input('direccion',  mssql.VarChar(200), direccion);
-        request.input('vigencia', mssql.DateTime, utc);
-        request.input('trans',  mssql.VarChar(10), trans);
+        request.input('vigencia', mssql.DateTime, fechaVigencia);
+        request.input('trans',  mssql.Bit, transaccion);
         await request.query(
           `INSERT INTO [dbo].[cufd] ([ambiente],[modalidad],[sucursal],[pventa],[cuis],[codigo],[codigo_control],[direccion],[vigencia],[trans])
           VALUES
           (@ambiente, @modalidad, @sucursal, @pventa, @cuis, @codigo, @ccontrol, @direccion, @vigencia, @trans)`
-        )
+        );
     }
     catch (error) {
       console.log(error);
@@ -60,15 +61,15 @@ class CodigosRepo {
 
   static async getLastCufd(pventa) {
     try {
-        const pool = await getConnection();
-        const request = await pool.request();
-        request.input('pventa',  mssql.Int, pventa);
-        const response = await request.query(`SELECT TOP 1 codigo, codigo_control FROM cufd WHERE vigencia > GETDATE() AND pventa = @pventa`);
-        var lastcufd = response.recordset[0];
-        if (!lastcufd){
-          lastcufd = {codigo: 'No existe CUFD vigente'};
-        }
-        return lastcufd;
+      const pool = await getConnection();
+      const request = await pool.request();
+      request.input('pventa',  mssql.Int, pventa);
+      const response = await request.query(`SELECT codigo, codigo_control FROM cufd WHERE vigencia > GETDATE() AND pventa = @pventa`);
+      var lastcufd = response.recordset[0];
+      if (!lastcufd){
+        lastcufd = {codigo: 'No existe CUFD vigente'};
+      }
+      return lastcufd;
     }
     catch (error) {
       console.log(error);

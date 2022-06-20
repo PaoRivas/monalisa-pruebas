@@ -2,27 +2,25 @@ const { getConnection, mssql } = require('../database');
 
 class OperacionesRepo {
 
-  static async addPventa(form, xmlresponse) {
+  static async addPuntoVenta(form, xmlresponse) {
     try {
-        const {ambiente, modalidad, sucursal, tipo, cuis, descripcion, nombre} = form;
-        const {codigo, trans} = xmlresponse;
+        const {codigoAmbiente, codigoModalidad, codigoSucursal, codigoTipoPuntoVenta, cuis, descripcion, nombrePuntoVenta} = form;
+        const {codigoPuntoVenta, transaccion} = xmlresponse;
         const pool = await getConnection();
         const request = await pool.request();
-        request.input('ambiente',  mssql.Int, ambiente);
-        request.input('modalidad',  mssql.Int, modalidad);
-        request.input('sucursal',  mssql.Int, sucursal);
-        request.input('tipo',  mssql.Int, tipo);
+        request.input('ambiente',  mssql.Int, codigoAmbiente);
+        request.input('modalidad',  mssql.Int, codigoModalidad);
+        request.input('sucursal',  mssql.Int, codigoSucursal);
+        request.input('tipo',  mssql.Int, codigoTipoPuntoVenta);
         request.input('cuis',  mssql.VarChar(10), cuis);
         request.input('descripcion',  mssql.VarChar(100), descripcion);
-        request.input('nombre',  mssql.VarChar(50), nombre);
-        request.input('codigo',  mssql.VarChar(100), codigo);
-        //request.input('cod_mensaje',  mssql.Int, cod_mensaje);
-        //request.input('mensaje',  mssql.VarChar(100), mensaje);
-        request.input('trans',  mssql.VarChar(10), trans);
+        request.input('nombre',  mssql.VarChar(50), nombrePuntoVenta);
+        request.input('codigo',  mssql.Int, codigoPuntoVenta);
+        request.input('trans',  mssql.Bit, transaccion);
         await request.query(
           `INSERT INTO [dbo].[pventa]
           ([ambiente],[modalidad],[sucursal],[tipo_pventa],[cuis],[descripcion],[nombre_pventa],[codigo],[trans])
-    VALUES
+          VALUES
           (@ambiente, @modalidad, @sucursal, @tipo, @cuis, @descripcion, @nombre, @codigo, @trans)`
         )
     }

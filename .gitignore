@@ -131,3 +131,8 @@ dist
 
 # keys
 README.md
+public/files/*
+public/files/paquete/*
+public/files/paquetedos/*
+views/pruebas.ejs
+views/tabla.ejs

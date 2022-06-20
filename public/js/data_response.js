@@ -9,46 +9,41 @@ const cpventa = document.getElementById("cpventa");
 const caeb = document.getElementById("caeb")
 const descripcion = document.getElementById("descripcion")
 const tipo = document.getElementById("tipo");
-//const trans = document.getElementById("trans")
-//const btnCuis = document.getElementById("btncuis")
 
 const responseCuis = async () => {
     const formData = new FormData(formCodes);
-    const data = await fetch('/cuis', {
+    const response = await fetch('/cuis', {
       method: "POST",
       body: formData
     });
-    const response = await data.json();
-    cuis.value = response.data.codigo
-    utc.value = response.data.utc
-    amd.value = response.data.amd
-    //trans.value = response.data.trans
+    const xmlResult = await response.json();
+    cuis.value = xmlResult.codigo
+    utc.value = xmlResult.fechaVigencia
+    amd.value = xmlResult.fechaVigencia
 };
 
 const responseCufd = async () => {
     const formData = new FormData(formCodes);
-    const data = await fetch('/cufd', {
+    const response = await fetch('/cufd', {
       method: "POST",
       body: formData
     });
-    const response = await data.json();
-    cufd.value = response.data.codigo
-    ccontrol.value = response.data.ccontrol
-    direccion.value = response.data.direccion
-    utc.value = response.data.utc
-    amd.value = response.data.amd
-    //trans.value = response.data.trans
+    const xmlResult = await response.json();
+    cufd.value = xmlResult.codigo
+    ccontrol.value = xmlResult.codigoControl
+    direccion.value = xmlResult.direccion
+    utc.value = xmlResult.fechaVigencia
+    amd.value = xmlResult.fechaVigencia
 };
 
-const responseCpventa = async () => {
+const responsePuntoVenta = async () => {
   const formData = new FormData(formCodes);
-  const data = await fetch('/crearpventa', {
+  const response = await fetch('/puntoventa', {
     method: "POST",
     body: formData
   });
-  const response = await data.json();
-  cpventa.value = response.data.codigo
-  //trans.value = response.data.trans
+  const xmlResult = await response.json();
+  cpventa.value = xmlResult.codigoPuntoVenta;
 };
 
 formCodes.addEventListener("click", (e) => {
@@ -60,6 +55,6 @@ formCodes.addEventListener("click", (e) => {
       responseCufd();
     }else if(e.target && e.target.matches(".btn-cpventa")){
       e.preventDefault();
-      responseCpventa();
+      responsePuntoVenta();
     }
 });

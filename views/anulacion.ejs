@@ -2,10 +2,10 @@
 <div class="col-md-10 mt-4 container">
     <div class="card card-user">
     <div class="card-header">
-        <h5 class="card-title">REGISTRO DE EVENTOS SIGNIFICATIVOS</h5>
+        <h5 class="card-title">ANULACIÓN DE FACTURAS</h5>
     </div>
     <div class="card-body">
-        <form action="/eventosignificativos" method="POST">
+        <form action="/anulacion" method="POST">
         <div class="row">
             <div class="col-md-6 pr-5">
             <div class="form-group">
@@ -18,15 +18,10 @@
             </div>
             <div class="col-md-6 pl-5">
             <div class="form-group">
-                <label>Motivo</label>
-                <select name='codigoMotivoEvento' class="form-select">
-                    <option value="1">CORTE DEL SERVICIO DE INTERNET</option>
-                    <option value="2">INACCESIBILIDAD AL SERVICIO WEB DE LA ADMINISTRACIÓN TRIBUTARIA</option>
-                    <option value="3">INGRESO A ZONAS SIN INTERNET POR DESPLIEGUE DE PUNTO DE VENTA EN VEHICULOS AUTOMOTORES</option>
-                    <option value="4">VENTA EN LUGARES SIN INTERNET</option>
-                    <option value="5">CORTE DE SUMINISTRO DE ENERGIA ELECTRICA</option>
-                    <option value="6">VIRUS INFORMÁTICO O FALLA DE SOFTWARE</option>
-                    <option value="7">CAMBIO DE INFRAESTRUCTURA DEL SISTEMA INFORMÁTICO DE FACTURACIÓN O FALLA DE HARDWARE</option>
+                <label>Modalidad</label>
+                <select name='codigoModalidad' class="form-select">
+                    <option value="1">1. Electrónica en línea</option>
+                    <option selected value="2">2. Computarizada en línea</option>
                 </select>
             </div>
             </div>
@@ -87,24 +82,53 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-4 pr-4">
             <div class="form-group">
-                <label>Código CUFD Evento</label>
-                <input type="text" name="cufdEvento" class="form-control">
+                <label>Documento Sector</label>
+                <select name='codigoDocumentoSector' class="form-select">
+                    <option selected value="1">[1]</option>
+                    <option value="2">[2]</option>
+                    <option value="3">[3]</option>
+                </select>
             </div>
+            </div>
+            <div class="col-md-4 pl-4">
+            <div class="form-group">
+                <label>Código Emisión</label>
+                <select name='codigoEmision' class="form-select">
+                    <option selected value="1">Online</option>
+                    <option value="2">Offline</option>
+                    <option value="3">Masiva</option>
+                </select>
+            </div>
+            </div>
+            <div class="col-md-4 pl-4">
+                <div class="form-group">
+                    <label>Tipo Factura</label>
+                    <select name='tipoFacturaDocumento' class="form-select">
+                        <option selected value="1">Factura con Derecho a Crédito Fiscal</option>
+                        <option value="2">Factura sin Derecho a Crédito Fiscal</option>
+                        <option value="3"> Documento de Ajuste </option>
+                    </select>
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 pr-5">
+            <div class="col-md-5 pr-4">
             <div class="form-group">
-                <label>Fecha Inicio</label>
-                <input type="datetime-local" name='fechaHoraInicioEvento' class="form-control">
+                <label>Motivo Anulación</label>
+                <select name='codigoMotivo' class="form-select">
+                    <option selected value="1">FACTURA MAL EMITIDA</option>
+                    <option value="2">NOTA DE CREDITO-DEBITO MAL EMITIDA</option>
+                    <option value="3">DATOS DE EMISION INCORRECTOS</option>
+                    <option value="4">FACTURA O NOTA DE CREDITO-DEBITO DEVUELTA</option>
+                </select>
             </div>
             </div>
-            <div class="col-md-6 pl-5">
+            <div class="col-md-7 pl-4">
             <div class="form-group">
-                <label>Fecha Fin</label>
-                <input type="datetime-local" name='fechaHoraFinEvento' class="form-control">
+                <label>CUF</label>
+                <input type="text" class="form-control">
             </div>
             </div>
         </div>
@@ -118,12 +142,10 @@
         </div>
         <div class="row">
             <div class="ml-auto mr-auto">
-            <button type="submit" class="btn btn-primary btn-round">Solicitar</button>
+            <button type="submit" id="btncufd" class="btn btn-primary btn-round btn-cufd">Solicitar</button>
             </div>
         </div>
         </form>
     </div>
     </div>
 </div>
-
-<script src="/js/data_response.js"></script>

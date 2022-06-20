@@ -24,7 +24,6 @@ class SyncRepo {
           await this.getSyncListaProductos(form,xmlresponse);
           break;
         default:
-          console.log('aqui dos')
           await this.getSyncRest(form, xmlresponse)
           break;
       }
@@ -38,22 +37,26 @@ class SyncRepo {
   static async getSyncActivities(form, xmlresponse) {
     try {
         const {codigoAmbiente, codigoSucursal, codigoPuntoVenta, cuis} = form;
-        const {codigoCaeb, descripcion, tipoActividad} = xmlresponse[0];
         const pool = await getConnection();
         const request = await pool.request();
         request.input('ambiente',  mssql.Int, codigoAmbiente);
         request.input('sucursal',  mssql.Int, codigoSucursal);
         request.input('pventa',  mssql.Int, codigoPuntoVenta);
         request.input('cuis',  mssql.VarChar(10), cuis);
-        request.input('descripcion',  mssql.VarChar(100), descripcion);
-        request.input('codigo',  mssql.VarChar(100), codigoCaeb);
-        request.input('tipo',  mssql.VarChar(100), tipoActividad);
-        await request.query(
-          `INSERT INTO [dbo].[sinc_actividades]
-          ([ambiente],[sucursal],[pventa],[cuis],[codigo_caeb],[descripcion],[tipo_actividad])
-          VALUES
-          (@ambiente,@sucursal,@pventa,@cuis,@codigo,@descripcion,@tipo)`
-        )
+
+        xmlresponse.forEach(async (res, i) => {
+
+          request.input('descripcion',  mssql.VarChar(100), res.descripcion);
+          request.input('codigo',  mssql.VarChar(100), res.codigoCaeb);
+          request.input('tipo',  mssql.VarChar(100), res.tipoActividad);
+          await request.query(
+            `INSERT INTO [dbo].[sinc_actividades]
+            ([ambiente],[sucursal],[pventa],[cuis],[codigo_caeb],[descripcion],[tipo_actividad])
+            VALUES
+            (@ambiente,@sucursal,@pventa,@cuis,@codigo,@descripcion,@tipo)`
+          )
+
+        })
     }
     catch (error) {
       console.log(error);
@@ -196,6 +199,22 @@ class SyncRepo {
         )
         
       })
+    }
+    catch (error) {
+      console.log(error);
+      throw(error);
+    }
+  }
+
+  static async getEventoSignificativo(codigo) {
+    try {
+        const pool = await getConnection();
+        const request = await pool.request();
+        request.input('codigo',  mssql.Int, codigo);
+        const response = await request.query(
+          `SELECT descripcion FROM sinc_eventos_significativos WHERE codigo_clasificador = @codigo`
+        );
+        return response.recordset[0];
     }
     catch (error) {
       console.log(error);

@@ -10,7 +10,7 @@
             <div class="col-md-6 pr-5">
             <div class="form-group">
                 <label>Ambiente</label>
-                <select name='ambiente' class="form-select">
+                <select name='codigoAmbiente' class="form-select">
                     <option value="1">1. Producción</option>
                     <option selected value="2">2. Pruebas y Piloto</option>
                 </select>
@@ -19,7 +19,7 @@
             <div class="col-md-6 pl-5">
             <div class="form-group">
                 <label>Modalidad</label>
-                <select name='modalidad' class="form-select">
+                <select name='codigoModalidad' class="form-select">
                     <option value="1">1. Electrónica en línea</option>
                     <option selected value="2">2. Computarizada en línea</option>
                 </select>
@@ -30,7 +30,7 @@
             <div class="col-md-6 pr-5">
             <div class="form-group">
                 <label>Código Sistema</label>
-                <input type="text" name='codsistema' class="form-control" value="71F2C7048ED54B99A4AE42F">
+                <input type="text" name='codigoSistema' class="form-control" value="71F2C7048ED54B99A4AE42F">
             </div>
             </div>
             <div class="col-md-6 pl-5">
@@ -44,7 +44,7 @@
             <div class="col-md-4 pr-4">
             <div class="form-group">
                 <label>Sucursal</label>
-                <select name='sucursal' class="form-select">
+                <select name='codigoSucursal' class="form-select">
                     <option value="0">Casa Matriz</option>
                     <option value="1">Sucursal [1]</option>
                     <option value="2">Sucursal [2]</option>
@@ -55,11 +55,13 @@
             <div class="col-md-4 pl-4">
             <div class="form-group">
                 <label>Tipo Punto de Venta</label>
-                <select name='tipo' class="form-select">
-                    <option value="1">Tipo [1]</option>
-                    <option value="2">Tipo [2]</option>
-                    <option value="3">Tipo [3]</option>
-                    <option value="4">Tipo [4]</option>
+                <select name='codigoTipoPuntoVenta' class="form-select">
+                    <option value="1">PUNTO VENTA COMISIONISTA</option>
+                    <option value="2">PUNTO VENTA VENTANILLA DE COBRANZA</option>
+                    <option value="3">PUNTO DE VENTA MOVILES</option>
+                    <option value="4">PUNTO DE VENTA YPFB</option>
+                    <option value="5">PUNTO DE VENTA CAJEROS</option>
+                    <option value="6">PUNTO DE VENTA CONJUNTA</option>
                 </select>
             </div>
             </div>
@@ -73,14 +75,14 @@
         <div class="row">
             <div class="col-md-6 pr-5">
             <div class="form-group">
-                <label>Descripción</label>
-                <input type="text" name='descripcion' class="form-control">
+                <label>Nombre</label>
+                <input type="text" name='nombrePuntoVenta' class="form-control">
             </div>
             </div>
             <div class="col-md-6 pl-5">
             <div class="form-group">
-                <label>Nombre</label>
-                <input type="text" name='nombre' class="form-control">
+                <label>Descripción</label>
+                <input type="text" name='descripcion' class="form-control">
             </div>
             </div>
         </div>
@@ -93,10 +95,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 pr-1">
+            <div class="col-md-4 pr-5">
             <div class="form-group">
                 <label>Código Punto de venta</label>
-                <input readonly type="text" id="cpventa" name="cpventa" class="form-control">
+                <input readonly type="text" id="cpventa" class="form-control">
             </div>
             </div>
         </div>
