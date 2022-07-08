@@ -55,9 +55,9 @@
             <div class="col-md-4 pl-4">
                 <div class="form-group">
                     <label>Punto de Venta</label>
-                    <select name='codigoPuntoVenta' class="form-select">
+                    <select id='codigoPuntoVenta' name='codigoPuntoVenta' class="form-select">
                         <option value="0">Punto de venta [0]</option>
-                        <option selected value="1">Punto de venta [1]</option>
+                        <option value="1">Punto de venta [1]</option>
                         <option value="2">Punto de venta [2]</option>
                         <option value="3">Punto de venta [3]</option>
                     </select>
@@ -66,10 +66,7 @@
             <div class="col-md-4 pl-4">
                 <div class="form-group">
                     <label>Código CUIS</label>
-                    <select name='cuis' class="form-select">
-                        <option value="145110CC">145110CC</option>
-                        <option selected value="FF947EED">FF947EED</option>
-                    </select>
+                    <input type="text" id="cuis" name="cuis" class="form-control">
                 </div>
             </div>
         </div>
@@ -77,7 +74,7 @@
             <div class="col-md-12">
             <div class="form-group">
                 <label>Código CUFD</label>
-                <input type="text" name="cufd" class="form-control" value="<%= lastcufd.codigo %>">
+                <input type="text" id="cufd" name="cufd" class="form-control">
             </div>
             </div>
         </div>
@@ -123,13 +120,13 @@
             <div class="col-md-4 pl-4">
                 <div class="form-group">
                     <label>Cantidad de Facturas</label>
-                    <input type="text" name="cantidadFacturas" class="form-control" value="2">
+                    <input type="text" name="cantidadFacturas" class="form-control">
                 </div>
             </div>
             <div class="col-md-4 pl-4">
                 <div class="form-group">
                     <label>Código Recepción Evento</label>
-                    <input type="text" name="codigoEvento" class="form-control" value="457809">
+                    <input type="text" name="codigoEvento" class="form-control">
                 </div>
             </div>
         </div>

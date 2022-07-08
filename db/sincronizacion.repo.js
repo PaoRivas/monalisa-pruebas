@@ -206,7 +206,7 @@ class SyncRepo {
     }
   }
 
-  static async getEventoSignificativo(codigo) {
+  static async getNameEventoSignificativo(codigo) {
     try {
         const pool = await getConnection();
         const request = await pool.request();

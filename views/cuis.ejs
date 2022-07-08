@@ -55,11 +55,10 @@
             <div class="col-md-6 pl-5">
             <div class="form-group">
                 <label>Punto de Venta</label>
-                <select name='codigoPuntoVenta' class="form-select">
-                    <option value="0">Punto de venta [0]</option>
-                    <option value="1">Punto de venta [1]</option>
-                    <option value="2">Punto de venta [2]</option>
-                    <option value="3">Punto de venta [3]</option>
+                <select id='codigoPuntoVenta' name='codigoPuntoVenta' class="form-select">
+                    <% for (let punto of puntos) { %> 
+                    <option value="<%= punto.codigo %>"><%= punto.nombre_pventa %></option>
+                    <% } %> 
                 </select>
             </div>
             </div>

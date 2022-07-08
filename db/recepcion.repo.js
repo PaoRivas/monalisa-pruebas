@@ -2,7 +2,7 @@ const { getConnection, mssql } = require('../database');
 
 class RecepcionRepo {
 
-  static async addFactura(form, xmlresponse) {
+  static async addRecepcionFactura(form, xmlresponse) {
     try {
         const {codigoAmbiente, codigoModalidad, codigoSucursal, codigoPuntoVenta, cuis, cufd, 
                 codigoDocumentoSector, codigoEmision, tipoFacturaDocumento} = form;
@@ -163,15 +163,39 @@ class RecepcionRepo {
     }
   }
 
-  static async addCuf(xmlresponse) {
+  static async addFactura(xmlresponse) {
     try {
-        const {cuf} = xmlresponse;
+        const {numero, cuf, fechaEnvio} = xmlresponse;
         const pool = await getConnection();
         const request = await pool.request();
-        request.input('cuf',  mssql.Int, cuf);
+        request.input('numero',  mssql.Int, numero);
+        request.input('cuf',  mssql.VarChar(100), cuf);
+        request.input('fecha',  mssql.DateTime, fechaEnvio);
         await request.query(
-          `INSERT INTO [dbo].[facturas]
-          ([cuf]) VALUES (@cuf)`
+          `INSERT INTO [dbo].[factura]
+          ([numero]
+          ,[cuf]
+          ,[fecha_emision]
+          ,[razon_social]
+          ,[documento_identidad]
+          ,[numero_documento]
+          ,[complemento]
+          ,[codigo_cliente]
+          ,[metodo_pago]
+          ,[numero_tarjeta]
+          ,[monto_total]
+          ,[monto_total_iva]
+          ,[codigo_moneda]
+          ,[tipo_cambio]
+          ,[monto_total_moneda]
+          ,[monto_giftcard]
+          ,[descuento_adicional]
+          ,[codigo_excepcion]
+          ,[cafc]
+          ,[usuario])
+    VALUES
+          (@numero, @cuf, @fecha, 'Razon Social', 1, 5115889, '', 5115889, 
+          1, '', 10000, 10000, 1, 1, 10000, '', '', '', '', 'pperez')`
         );
     }
     catch (error) {
@@ -180,14 +204,14 @@ class RecepcionRepo {
     }
   }
 
-  static async getCuf() {
+  static async getNumeroFactura() {
     try {
       const pool = await getConnection();
       const request = await pool.request();
       const response = await request.query(
-        `SELECT cuf FROM [dbo].[facturas]`
+        `SELECT max(numero) as numero FROM [dbo].[factura]`
       );
-      return response.recordset;
+      return response.recordset[0].numero;
     }
     catch (error) {
       console.log(error);
@@ -195,20 +219,35 @@ class RecepcionRepo {
     }
   }
 
-  static async getCodigoRecepcionPaquete() {
-    try {
-      const pool = await getConnection();
-      const request = await pool.request();
-      const response = await request.query(
-        `SELECT codigo_recepcion FROM [dbo].[recepcion_paquete] WHERE id > 221`
-      );
-      return response.recordset;
-    }
-    catch (error) {
-      console.log(error);
-      throw(error);
-    }
-  }
+  // static async getCuf() {
+  //   try {
+  //     const pool = await getConnection();
+  //     const request = await pool.request();
+  //     const response = await request.query(
+  //       `SELECT cuf FROM [dbo].[facturas]`
+  //     );
+  //     return response.recordset;
+  //   }
+  //   catch (error) {
+  //     console.log(error);
+  //     throw(error);
+  //   }
+  // }
+
+  // static async getCodigoRecepcionPaquete() {
+  //   try {
+  //     const pool = await getConnection();
+  //     const request = await pool.request();
+  //     const response = await request.query(
+  //       `SELECT codigo_recepcion FROM [dbo].[recepcion_paquete] WHERE id > 221`
+  //     );
+  //     return response.recordset;
+  //   }
+  //   catch (error) {
+  //     console.log(error);
+  //     throw(error);
+  //   }
+  // }
 }
 
 module.exports = RecepcionRepo;

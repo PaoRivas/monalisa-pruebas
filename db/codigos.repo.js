@@ -15,14 +15,14 @@ class CodigosRepo {
         request.input('pventa',  mssql.Int, codigoPuntoVenta);
         request.input('codigo',  mssql.VarChar(10), codigo);
         request.input('vigencia', mssql.DateTime, fechaVigencia);
-        request.input('cod_mensaje',  mssql.Int, 980);
-        request.input('mensaje',  mssql.VarChar(100), 'EXISTE UN CUIS VIGENTE PARA LA SUCURSAL O PUNTO DE VENTA');
+        // request.input('cod_mensaje',  mssql.Int, 980);
+        // request.input('mensaje',  mssql.VarChar(100), 'EXISTE UN CUIS VIGENTE PARA LA SUCURSAL O PUNTO DE VENTA');
         request.input('trans',  mssql.Bit, transaccion);
         await request.query(
           `INSERT INTO [dbo].[cuis]
-          ([ambiente],[modalidad],[sucursal],[pventa],[codigo],[vigencia],[cod_mensaje],[mensaje],[trans])
+          ([ambiente],[modalidad],[sucursal],[pventa],[codigo],[vigencia],[trans])
             VALUES
-          (@ambiente, @modalidad, @sucursal, @pventa, @codigo, @vigencia, @cod_mensaje, @mensaje, @trans)`
+          (@ambiente, @modalidad, @sucursal, @pventa, @codigo, @vigencia, @trans)`
         );
     }
     catch (error) {
@@ -59,6 +59,24 @@ class CodigosRepo {
     }
   }
 
+  static async getCuis(pventa) {
+    try {
+      const pool = await getConnection();
+      const request = await pool.request();
+      request.input('pventa',  mssql.Int, pventa);
+      const response = await request.query(`SELECT codigo FROM cuis WHERE pventa = @pventa`);
+      var cuis = response.recordset[0];
+      if (!cuis){
+        cuis = {codigo: 'No existe CUIS'};
+      }
+      return cuis;
+    }
+    catch (error) {
+      console.log(error);
+      throw(error);
+    }
+  }
+
   static async getLastCufd(pventa) {
     try {
       const pool = await getConnection();
@@ -70,6 +88,20 @@ class CodigosRepo {
         lastcufd = {codigo: 'No existe CUFD vigente'};
       }
       return lastcufd;
+    }
+    catch (error) {
+      console.log(error);
+      throw(error);
+    }
+  }
+  
+  static async getCControlbyCUFD(cufd) {
+    try {
+      const pool = await getConnection();
+      const request = await pool.request();
+      request.input('cufd',  mssql.VarChar(100), cufd);
+      const response = await request.query(`SELECT codigo_control FROM cufd WHERE codigo = @cufd`);
+      return response.recordset[0].codigo_control;
     }
     catch (error) {
       console.log(error);

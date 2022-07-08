@@ -425,3 +425,53 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
+CREATE TABLE [dbo].[factura](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[numero] [int] NOT NULL,
+	[cuf] [nvarchar](100) NOT NULL,
+	[fecha_emision] [datetime] NOT NULL,
+	[razon_social] [nvarchar](50) NOT NULL,
+	[documento_identidad] [int] NOT NULL,
+	[numero_documento] [int] NOT NULL,
+	[complemento] [nvarchar](10),
+	[codigo_cliente] [int] NOT NULL,
+	[metodo_pago] [int] NOT NULL,
+	[numero_tarjeta] [int],
+	[monto_total] [int] NOT NULL,
+	[monto_total_iva] [int] NOT NULL,
+	[codigo_moneda] [int] NOT NULL,
+	[tipo_cambio] [int] NOT NULL,
+	[monto_total_moneda] [int] NOT NULL,
+	[monto_giftcard] [int],
+	[descuento_adicional] [int],
+	[codigo_excepcion] [int],
+	[cafc] [nvarchar](40),
+	[usuario] [nvarchar](40) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[detalle](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[numero_factura] [int] NOT NULL,
+	[actividad_economica] [int] NOT NULL,
+	[codigo_producto_sin] [int] NOT NULL,
+	[codigo_producto] [nvarchar](20) NOT NULL,
+	[descripcion] [nvarchar](100) NOT NULL,
+	[cantidad] [int] NOT NULL,
+	[unidad_medida] [int] NOT NULL,
+	[precio_unitario] [int] NOT NULL,
+	[monto_descuento] [int] NOT NULL,
+	[subtotal] [int] NOT NULL,
+	[numero_serie] [int],
+	[numero_imei] [int],
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO

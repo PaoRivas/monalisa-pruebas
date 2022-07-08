@@ -9,7 +9,7 @@ const getsync = async (data) => {
   const response = await client[funcion + 'Async'](args);
   const firstkey = Object.values(response[0])[0];
   const result = Object.values(firstkey)[1];
-  //console.log(result)
+  console.log(result)
   return result;
 };
 

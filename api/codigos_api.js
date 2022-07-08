@@ -9,7 +9,7 @@ const getcuis = async (data) => {
   client.addHttpHeader('ApiKey', `TokenApi ${token}`);
   const response = await client.cuisAsync(args);
   const result = Object.values(response[0])[0];
-  result.fechaVigencia = helpers.dateToTimestamp(result.fechaVigencia);
+  //result.fechaVigencia = helpers.dateToTimestamp(result.fechaVigencia);
   //console.log(client.describe().ServicioFacturacionCodigos.ServicioFacturacionCodigosPort.cuis);
   //  utc = helpers.dateToTimestamp(vigencia);
   //  amd = utc.slice(0,10);
@@ -23,10 +23,11 @@ const getcufd = async (data) => {
   client.addHttpHeader('ApiKey', `TokenApi ${token}`);
   const response = await client.cufdAsync(args);
   const result = Object.values(response[0])[0];
-  result.fechaVigencia = helpers.dateToTimestamp(result.fechaVigencia);
+  //result.fechaVigencia = helpers.dateToTimestamp(result.fechaVigencia);
   //console.log(client.describe().ServicioFacturacionCodigos.ServicioFacturacionCodigosPort.cuis);
   //  utc = helpers.dateToTimestamp(vigencia);
   //  amd = utc.slice(0,10);
+  //console.log(result)
   return result;
 };
 
